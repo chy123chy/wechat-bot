@@ -1,0 +1,4 @@
+wechaty~=0.10
+pyee==10.0.2
+urllib3<2.0.0
+futu-api
