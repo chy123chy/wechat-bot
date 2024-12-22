@@ -2,4 +2,4 @@ export WECHATY_PUPPET_SERVICE_NO_TLS_INSECURE_CLIENT="true"
 export WECHATY_PUPPET_SERVICE_TOKEN=3d415ebb-7a6f-4cba-b602-1f4ae421f016
 export WECHATY_PUPPET_SERVICE_ENDPOINT=0.0.0.0:30001
 
-python main.py
+nohup python main.py > wechat-bot.log 2>&1 &
