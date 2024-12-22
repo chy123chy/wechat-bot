@@ -37,14 +37,14 @@ async def on_message(msg: Message):
         if data is None:
             return
         reply = data['name'].values[0] + " " + data['update_time'].values[0] + "\n" + \
-                "最新价格：" + data['last_price'].values[0] + "\n" + \
-                "今开价格：" + data['open_price'].values[0] + "\n" + \
-                "昨收价格：" + data['prev_close_price'].values[0] + "\n" + \
-                "最高价格：" + data['high_price'].values[0] + "\n" + \
-                "最低价格：" + data['low_price'].values[0] + "\n" + \
-                "成交数量：" + data['volume'].values[0] + "\n" + \
-                "成交金额：" + data['turnover'].values[0] + "\n" + \
-                "换手率：" + data['turnover_rate'].values[0]
+                "最新价格：" + str(data['last_price'].values[0]) + "\n" + \
+                "今开价格：" + str(data['open_price'].values[0]) + "\n" + \
+                "昨收价格：" + str(data['prev_close_price'].values[0]) + "\n" + \
+                "最高价格：" + str(data['high_price'].values[0]) + "\n" + \
+                "最低价格：" + str(data['low_price'].values[0]) + "\n" + \
+                "成交数量：" + str(data['volume'].values[0]) + "\n" + \
+                "成交金额：" + str(data['turnover'].values[0]) + "\n" + \
+                "换手率：" + str(data['turnover_rate'].values[0]) + "%"
         await msg.say(reply)
 
 
