@@ -98,6 +98,7 @@ async def main():
     bot.on('login', on_login)
     bot.on('message', on_message)
 
+    stock.init()
     await bot.start()
 
     print('[Python Wechaty] Ding Dong Bot started.')

@@ -19,6 +19,7 @@ def init():
 
 
 def search_stock_code(name):
+    global all_stock
     filtered_stock = all_stock[all_stock['name'].str.contains(name, case=False, na=False)]
     if filtered_stock is None or len(filtered_stock) == 0:
         return None
@@ -26,6 +27,7 @@ def search_stock_code(name):
 
 
 def get_stock_snapshot(code):
+    global quote_ctx
     ret, data = quote_ctx.get_market_snapshot([code])
     if ret == RET_OK:
         if data is None or len(data) == 0:
@@ -36,11 +38,12 @@ def get_stock_snapshot(code):
 
 
 def search_stock_snapshot(name):
-    code = search_stock_code("长虹")
+    code = search_stock_code(name)
     if code is None:
         return None
     return get_stock_snapshot(code)
 
 
 def stop():
+    global quote_ctx
     quote_ctx.close()
