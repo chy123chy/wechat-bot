@@ -27,6 +27,28 @@ def extract_chinese_before_keyword(text, keyword):
         return None
 
 
+def str_of_num(num):
+    """
+    递归实现，精确为最大单位值 + 小数点后三位
+    """
+
+    def str_of_size(num, level):
+        if level >= 2:
+            return num, level
+        elif num >= 10000:
+            num /= 10000
+            level += 1
+            return str_of_size(num, level)
+        else:
+            return num, level
+
+    units = ['', '万', '亿']
+    num, level = str_of_size(num, 0)
+    if level > len(units):
+        level -= 1
+    return '{}{}'.format(round(num, 3), units[level])
+
+
 async def on_message(msg: Message):
     """
     Message Handler for the Bot
@@ -42,10 +64,10 @@ async def on_message(msg: Message):
                 "昨收价格：" + str(data['prev_close_price'].values[0]) + "\n" + \
                 "最高价格：" + str(data['high_price'].values[0]) + "\n" + \
                 "最低价格：" + str(data['low_price'].values[0]) + "\n" + \
-                "成交数量：" + str(data['volume'].values[0]) + "\n" + \
-                "成交金额：" + str(data['turnover'].values[0]) + "\n" + \
+                "成交数量：" + str_of_num(data['volume'].values[0]) + "\n" + \
+                "成交金额：" + str_of_num(data['turnover'].values[0]) + "\n" + \
                 "换手率：" + str(data['turnover_rate'].values[0]) + "%"
-        await msg.say(reply)
+        await msg.talker().say(reply)
 
 
 async def on_scan(
